@@ -1,0 +1,18 @@
+@use '../abstract/variables';
+
+.header {
+  width: 100%;
+  background: variables.$primary;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .logo {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: variables.$light;
+  }
+}

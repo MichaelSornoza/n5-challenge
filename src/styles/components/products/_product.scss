@@ -1,0 +1,23 @@
+@use '../../abstract/variables';
+
+.product {
+  width: 300px;
+  height: 300px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  gap: 10px;
+
+  background-color: variables.$light;
+
+  border-radius: 10px;
+  box-shadow: variables.$shadow-md;
+
+  .button-container {
+    width: 100%;
+    padding: 10px;
+  }
+}
