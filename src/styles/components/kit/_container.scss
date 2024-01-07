@@ -3,6 +3,7 @@
 
 .container {
   max-width: map-get(variables.$container-max-widths, sm);
+  width: 100%;
 
   @include mixins.breakpoint(medium) {
     max-width: map-get(variables.$container-max-widths, md);
