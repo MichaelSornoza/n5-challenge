@@ -9,7 +9,7 @@ input[type=text] {
 
 .container {
   max-width: 540px;
-  margin: 0 auto;
+  margin: 2rem auto;
   padding: 0 15px;
 }
 @media (min-width: 768px) {

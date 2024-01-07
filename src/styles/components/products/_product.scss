@@ -2,22 +2,120 @@
 
 .product {
   width: 300px;
-  height: 300px;
+  height: 350px;
 
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  align-items: flex-end;
 
-  gap: 10px;
+  box-sizing: border-box;
 
-  background-color: variables.$light;
+  border: 1px solid variables.$secondary;
 
-  border-radius: 10px;
-  box-shadow: variables.$shadow-md;
+  box-shadow: variables.$shadow;
 
-  .button-container {
+
+  .content {
     width: 100%;
-    padding: 10px;
+    height: 40%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+
+    background-color: variables.$light;
+    box-sizing: border-box;
+
+    padding: 0 .5rem .5rem .5rem;
+
+    .title {
+      font-size: .8rem;
+      font-weight: 700;
+      color: variables.$primary;
+      text-align: center;
+      text-transform: uppercase;
+      text-decoration: none;
+
+      h2 {
+        margin: .5rem
+      }
+    }
+
+    .price {
+      font-size: 1rem;
+      font-weight: 500;
+      color: variables.$secondary;
+      text-align: center;
+      text-transform: uppercase;
+      text-decoration: none;
+    }
+
+    .counter-container {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: .5rem;
+      // padding: 0 1rem;
+
+      .counter {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background-color: variables.$secondary;
+        border-radius: 5px;
+
+        button {
+          height: 100%;
+          width: 25%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-weight: 400;
+
+          &:first-child {
+            border-radius: 5px 0 0 5px;
+          }
+
+          &:last-child {
+            border-radius: 0 5px 5px 0;
+          }
+        }
+
+        span {
+          font-size: 1rem;
+          color: variables.$light;
+          font-weight: 400;
+          text-align: center;
+          text-transform: uppercase;
+          text-decoration: none;
+          transition: all 0.3s ease-in-out;
+
+        }
+      }
+
+      .cart-button-container {
+        width: 20%;
+
+        button {
+          border-radius: 5px;
+          padding: 0;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          svg {
+            width: 1.5rem;
+            height: 1.5rem;
+            fill: variables.$light;
+          }
+
+        }
+      }
+    }
+
   }
+
 }
