@@ -1,9 +1,11 @@
 'use client'
 
 import CartPlus from '@/components/icons/cart/plus'
+import { addToCart } from '@/store/slices/cart'
 import type { IProduct } from '@/types/products'
 import { useState } from 'react'
 import toast from 'react-hot-toast'
+import { useDispatch } from 'react-redux'
 
 export interface IProductProps {
   product: IProduct
@@ -11,6 +13,8 @@ export interface IProductProps {
 
 const Product = ({ product }: IProductProps): JSX.Element => {
   const [counter, setCounter] = useState<number>(0)
+
+  const dispatch = useDispatch()
 
   const handleCounter = (type: string): void => {
     if (type === 'add') {
@@ -29,6 +33,14 @@ const Product = ({ product }: IProductProps): JSX.Element => {
       }
       setCounter(counter - 1)
     }
+  }
+
+  const addItemToCart = (): void => {
+    dispatch(addToCart({
+      id: product.id,
+      amount: counter
+    }))
+    toast.success('Producto agregado al carrito')
   }
 
   return (
@@ -50,12 +62,12 @@ const Product = ({ product }: IProductProps): JSX.Element => {
         <footer>
           <div className="counter-container">
             <div className="counter">
-              <button type="button" onClick={() => { handleCounter('') }}>-</button>
+              <button type="button" className="primary" onClick={() => { handleCounter('') }}>-</button>
               <span>{counter} / {product.amount}</span>
-              <button type="button" onClick={() => { handleCounter('add') }}>+</button>
+              <button type="button" className="primary" onClick={() => { handleCounter('add') }}>+</button>
             </div>
             <div className="cart-button-container">
-              <button type="button" className="icon-button">
+              <button type="button" disabled={counter === 0} className="icon-button success" onClick={addItemToCart}>
                 <CartPlus />
               </button>
             </div>

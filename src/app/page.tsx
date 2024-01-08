@@ -1,8 +1,6 @@
 'use client'
 
 import Products from '@/components/products'
-import Container from '@/components/layout/container'
-import { Toaster } from 'react-hot-toast'
 import { useDispatch } from 'react-redux'
 import { useEffect } from 'react'
 import { fetchStockSuccess } from '@/store/slices/stock'
@@ -16,11 +14,8 @@ const Home = (): JSX.Element => {
   }, [])
 
   return (
-    <main id="home-root">
-      <Container>
-        <Products />
-      </Container>
-      <Toaster />
+    <main>
+      <Products />
     </main>
   )
 }

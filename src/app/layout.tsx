@@ -5,6 +5,7 @@ import '@/css/styles.css'
 import Header from '@/components/layout/header'
 import Modal from '@/components/modal'
 import Providers from './providers'
+import { Toaster } from 'react-hot-toast'
 
 const roboto = Roboto({
   weight: ['100', '300', '400', '500', '700', '900'],
@@ -27,6 +28,7 @@ const RootLayout = ({ children }: IPageProps): JSX.Element => {
         <Providers>
           <Header />
           <Modal />
+          <Toaster />
           {children}
         </Providers>
       </body>
