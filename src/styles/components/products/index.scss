@@ -2,18 +2,8 @@
 @use '../../abstract/mixins';
 
 .grid-products {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-
-  gap: 1.5rem;
-
-  @include mixins.breakpoint(medium) {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    grid-gap: 1rem;
-  }
+  gap: 2rem;
 }

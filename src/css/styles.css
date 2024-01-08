@@ -6,7 +6,8 @@
   justify-content: space-around;
   align-items: center;
 }
-.header .logo {
+.header .logo a {
+  text-decoration: none;
   color: #f8f9fa;
 }
 .header .cart {
@@ -37,7 +38,6 @@ input[type=text] {
   max-width: 540px;
   width: 100%;
   margin: 2rem auto;
-  padding: 0 15px;
 }
 @media (min-width: 768px) {
   .container {
@@ -89,46 +89,76 @@ button {
 }
 
 .product {
-  width: 250px;
+  width: 100%;
   height: 300px;
-  display: flex;
-  align-items: flex-end;
   box-sizing: border-box;
-  border: 1px solid #365486;
-  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3);
 }
 
-@media (min-width: 768px) {
-  .product {
-    width: 300px;
-  }
-}
 .product .content {
   width: 100%;
-  height: 40%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  background-color: #f8f9fa;
-  box-sizing: border-box;
-  padding: 0 0.5rem 0.5rem 0.5rem;
 }
 
-.product .content .title {
+.product .content header,
+.product .content footer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  box-sizing: border-box;
+  padding: 0.5rem;
+  backdrop-filter: blur(40px);
+}
+
+.product .content header h2,
+.product .content footer h2 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #f8f9fa;
+  text-align: left;
+  text-transform: uppercase;
+  text-decoration: none;
+  margin: 0;
+}
+
+.product .content header span,
+.product .content footer span {
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: #f8f9fa;
+  text-align: left;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.product .content header .title,
+.product .content footer .title {
   font-size: 0.8rem;
   font-weight: 700;
-  color: #0F1035;
+  color: #f8f9fa;
   text-align: center;
   text-transform: uppercase;
   text-decoration: none;
 }
 
-.product .content .title h2 {
+.product .content header .title h2,
+.product .content footer .title h2 {
   margin: 0.5rem;
 }
 
-.product .content .price {
+.product .content footer {
+  width: 100%;
+}
+
+.product .content footer .price {
   font-size: 1rem;
   font-weight: 500;
   color: #365486;
@@ -137,7 +167,7 @@ button {
   text-decoration: none;
 }
 
-.product .content .counter-container {
+.product .content footer .counter-container {
   width: 100%;
   display: flex;
   align-items: center;
@@ -145,7 +175,7 @@ button {
   gap: 0.5rem;
 }
 
-.product .content .counter-container .counter {
+.product .content footer .counter-container .counter {
   width: 100%;
   height: 100%;
   display: flex;
@@ -155,7 +185,7 @@ button {
   border-radius: 5px;
 }
 
-.product .content .counter-container .counter button {
+.product .content footer .counter-container .counter button {
   height: 100%;
   width: 25%;
   display: flex;
@@ -164,15 +194,15 @@ button {
   font-weight: 400;
 }
 
-.product .content .counter-container .counter button:first-child {
+.product .content footer .counter-container .counter button:first-child {
   border-radius: 5px 0 0 5px;
 }
 
-.product .content .counter-container .counter button:last-child {
+.product .content footer .counter-container .counter button:last-child {
   border-radius: 0 5px 5px 0;
 }
 
-.product .content .counter-container .counter span {
+.product .content footer .counter-container .counter span {
   font-size: 1rem;
   color: #f8f9fa;
   font-weight: 400;
@@ -182,11 +212,11 @@ button {
   transition: all 0.3s ease-in-out;
 }
 
-.product .content .counter-container .cart-button-container {
+.product .content footer .counter-container .cart-button-container {
   width: 20%;
 }
 
-.product .content .counter-container .cart-button-container button {
+.product .content footer .counter-container .cart-button-container button {
   border-radius: 5px;
   padding: 0;
   display: flex;
@@ -194,26 +224,16 @@ button {
   align-items: center;
 }
 
-.product .content .counter-container .cart-button-container button svg {
+.product .content footer .counter-container .cart-button-container button svg {
   width: 1.5rem;
   height: 1.5rem;
   fill: #f8f9fa;
 }
 
 .grid-products {
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  gap: 1.5rem;
-}
-@media (min-width: 768px) {
-  .grid-products {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    grid-gap: 1rem;
-  }
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
 }
 
 body {
@@ -221,90 +241,58 @@ body {
   padding: 0;
 }
 
-.alice-carousel .alice-carousel__next-btn {
+dialog {
+  padding: 1rem 3rem;
+  background: white;
+  max-width: 400px;
+  padding-top: 2rem;
+  border-radius: 20px;
+  border: 0;
+  box-shadow: 0 5px 30px 0 rgba(0, 0, 0, 0.1);
+  animation: fadeIn 1s ease both;
+}
+dialog::backdrop {
+  animation: fadeIn 1s ease both;
+  background: rgba(255, 255, 255, 0.4);
+  z-index: 2;
+  backdrop-filter: blur(20px);
+}
+dialog .x {
+  filter: grayscale(1);
+  border: none;
+  background: none;
   position: absolute;
-  top: 25%;
-  right: 0;
-  display: flex;
-  justify-content: flex-end;
+  top: 15px;
+  right: 10px;
+  transition: ease filter, transform 0.3s;
+  cursor: pointer;
+  transform-origin: center;
 }
-.alice-carousel .alice-carousel__prev-btn {
-  position: absolute;
-  top: 25%;
-  left: 0;
-  display: flex;
-  justify-content: flex-start;
+dialog .x:hover {
+  filter: grayscale(0);
+  transform: scale(1.1);
 }
-.alice-carousel button {
-  width: 2rem;
-  height: 2rem;
-  padding: 0;
+dialog h2 {
+  font-weight: 600;
+  font-size: 2rem;
+  padding-bottom: 1rem;
+}
+dialog p {
+  font-size: 1rem;
+  line-height: 1.3rem;
+  padding: 0.5rem 0;
+}
+dialog p a:visited {
+  color: rgb(var(--vs-primary));
 }
 
-/*
-
-//  dialog {
-//   padding: 1rem 3rem;
-//   background: white;
-//   max-width: 400px;
-//   padding-top: 2rem;
-//   border-radius: 20px;
-//   border: 0;
-//   box-shadow: 0 5px 30px 0 rgb(0 0 0 / 10%);
-//   animation: fadeIn 1s ease both;
-
-//   &::backdrop {
-//     animation: fadeIn 1s ease both;
-//     background: rgb(255 255 255 / 40%);
-//     z-index: 2;
-//     backdrop-filter: blur(20px);
-//   }
-
-//   .x {
-//     filter: grayscale(1);
-//     border: none;
-//     background: none;
-//     position: absolute;
-//     top: 15px;
-//     right: 10px;
-//     transition: ease filter, transform 0.3s;
-//     cursor: pointer;
-//     transform-origin: center;
-
-//     &:hover {
-//       filter: grayscale(0);
-//       transform: scale(1.1);
-//     }
-//   }
-
-//   h2 {
-//     font-weight: 600;
-//     font-size: 2rem;
-//     padding-bottom: 1rem;
-//   }
-
-//   p {
-//     font-size: 1rem;
-//     line-height: 1.3rem;
-//     padding: 0.5rem 0;
-
-//     a {
-//       &:visited {
-//         color: rgb(var(--vs-primary));
-//       }
-//     }
-//   }
-// }
-
-// @keyframes fadeIn {
-//   from {
-//     opacity: 0;
-//   }
-
-//   to {
-//     opacity: 1;
-//   }
-// }
-*/
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
 
 /*# sourceMappingURL=styles.css.map */

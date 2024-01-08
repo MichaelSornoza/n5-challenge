@@ -22,13 +22,11 @@ const Product = ({ product }: IProductProps): JSX.Element => {
 
         return
       }
-
       setCounter(counter + 1)
     } else {
       if (counter === 0) {
         return
       }
-
       setCounter(counter - 1)
     }
   }
@@ -43,24 +41,26 @@ const Product = ({ product }: IProductProps): JSX.Element => {
       }}
     >
       <div className="content">
-        <div className="title">
-          <h2>{product.name}</h2>
-        </div>
-        <div className="price">
-          <span>$ {product.price}</span>
-        </div>
-        <div className="counter-container">
-          <div className="counter">
-            <button type="button" onClick={() => { handleCounter('') }}>-</button>
-            <span>{counter} / {product.amount}</span>
-            <button type="button" onClick={() => { handleCounter('add') }}>+</button>
+        <header>
+          <div>
+            <h2>{product.name}</h2>
+            <span>$ {product.price}</span>
           </div>
-          <div className="cart-button-container">
-            <button type="button" className="icon-button">
-              <CartPlus />
-            </button>
+        </header>
+        <footer>
+          <div className="counter-container">
+            <div className="counter">
+              <button type="button" onClick={() => { handleCounter('') }}>-</button>
+              <span>{counter} / {product.amount}</span>
+              <button type="button" onClick={() => { handleCounter('add') }}>+</button>
+            </div>
+            <div className="cart-button-container">
+              <button type="button" className="icon-button">
+                <CartPlus />
+              </button>
+            </div>
           </div>
-        </div>
+        </footer>
       </div>
     </div>
   )

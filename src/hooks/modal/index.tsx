@@ -1,24 +1,33 @@
+import { useEffect, useState } from 'react'
+import { createPortal } from 'react-dom'
+
 export interface IUseModalReturn {
   openModal: () => void
   closeModal: () => void
+  setContent: (Content: React.ReactNode) => void
 }
 
-export interface IUseModal {
-  children: JSX.Element
-  title: string
-  description: string
-}
+const useModal = (): IUseModalReturn => {
+  const [modal, setModal] = useState<HTMLDialogElement | null>(null)
 
-const useModal = ({ children, title, description }: IUseModal): IUseModalReturn => {
-  console.log('useModal', children, title, description)
+  useEffect(() => {
+    setModal(document.querySelector('dialog'))
+  }, [])
+
+  const openModal = (): void => {
+    modal?.showModal()
+  }
+
+  const closeModal = (): void => {
+    modal?.close()
+  }
+
+  const setContent = (Content: React.ReactNode): React.ReactPortal | null => (modal !== null) ? createPortal(Content, modal) : null
 
   return {
-    openModal: () => {
-      console.log('open modal')
-    },
-    closeModal: () => {
-      console.log('close modal')
-    }
+    openModal,
+    closeModal,
+    setContent
   }
 }
 
