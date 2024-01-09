@@ -1,0 +1,11 @@
+@use '../../abstract/variables';
+
+.cart-page {
+  padding: .5rem 1rem;
+
+  .grid-products {
+    padding: 1rem;
+    background-color: variables.$light;
+    box-shadow: variables.$shadow-xl;
+  }
+}

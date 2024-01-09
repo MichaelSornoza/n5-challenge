@@ -12,9 +12,11 @@ const Header = (): JSX.Element => {
         </Link>
       </div>
       <div className="cart">
-        <button type="button" className="primary">
-          <Cart />
-        </button>
+        <Link href="/cart">
+          <button type="button" className="primary">
+            <Cart />
+          </button>
+        </Link>
       </div>
     </header>
   )

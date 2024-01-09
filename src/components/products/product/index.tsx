@@ -1,17 +1,22 @@
+/* eslint-disable @typescript-eslint/indent */
+/* eslint-disable multiline-ternary */
 'use client'
 
-import CartPlus from '@/components/icons/cart/plus'
 import { addToCart } from '@/store/slices/cart'
 import type { IProduct } from '@/types/products'
 import { useState } from 'react'
 import toast from 'react-hot-toast'
 import { useDispatch } from 'react-redux'
+import Add from './add'
+import Info from './info'
 
 export interface IProductProps {
   product: IProduct
+  isCart?: boolean
+  amount?: number
 }
 
-const Product = ({ product }: IProductProps): JSX.Element => {
+const Product = ({ product, isCart = false, amount }: IProductProps): JSX.Element => {
   const [counter, setCounter] = useState<number>(0)
 
   const dispatch = useDispatch()
@@ -44,14 +49,7 @@ const Product = ({ product }: IProductProps): JSX.Element => {
   }
 
   return (
-    <div className="product"
-      style={{
-        backgroundImage: `url(${product.image})`,
-        backgroundPosition: 'center',
-        backgroundSize: 'cover',
-        backgroundRepeat: 'no-repeat'
-      }}
-    >
+    <div className="product" style={{ backgroundImage: `url(${product.image})` }}>
       <div className="content">
         <header>
           <div>
@@ -59,20 +57,13 @@ const Product = ({ product }: IProductProps): JSX.Element => {
             <span>$ {product.price}</span>
           </div>
         </header>
-        <footer>
-          <div className="counter-container">
-            <div className="counter">
-              <button type="button" className="primary" onClick={() => { handleCounter('') }}>-</button>
-              <span>{counter} / {product.amount}</span>
-              <button type="button" className="primary" onClick={() => { handleCounter('add') }}>+</button>
-            </div>
-            <div className="cart-button-container">
-              <button type="button" disabled={counter === 0} className="icon-button success" onClick={addItemToCart}>
-                <CartPlus />
-              </button>
-            </div>
-          </div>
-        </footer>
+        {
+          !isCart ? (
+            <Add counter={counter} amount={product.amount} addItemToCart={addItemToCart} handleCounter={handleCounter} />
+          ) : (
+            <Info />
+          )
+        }
       </div>
     </div>
   )

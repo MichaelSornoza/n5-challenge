@@ -2,10 +2,30 @@
 @use 'components/header';
 @use 'components/kit';
 @use 'pages/home';
+@use 'pages/cart';
 
 body {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+  background-color: variables.$secondary;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+
+.bg-primary {
+  background-color: variables.$primary;
+}
+
+.bg-secondary {
+  background-color: variables.$secondary;
 }
 
 dialog {
