@@ -48,6 +48,8 @@ const Product = ({ product, isCart = false, amount }: IProductProps): JSX.Elemen
     toast.success('Producto agregado al carrito')
   }
 
+  const total = product.price * (amount ?? 0) // eslint-disable-line
+
   return (
     <div className="product" style={{ backgroundImage: `url(${product.image})` }}>
       <div className="content">
@@ -61,7 +63,7 @@ const Product = ({ product, isCart = false, amount }: IProductProps): JSX.Elemen
           !isCart ? (
             <Add counter={counter} amount={product.amount} addItemToCart={addItemToCart} handleCounter={handleCounter} />
           ) : (
-            <Info />
+            <Info total={total} price={product.price} amount={amount ?? 0} />
           )
         }
       </div>

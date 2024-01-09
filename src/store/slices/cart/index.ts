@@ -26,11 +26,14 @@ const cartSlice = createSlice({
     },
     removeFromCart: (state, action: PayloadAction<number>) => {
       state.items = state.items.filter((item) => item.id !== action.payload)
+    },
+    resetCart: (state) => {
+      state = initialState
     }
   }
 })
 
-export const { addToCart, removeFromCart } = cartSlice.actions
+export const { addToCart, removeFromCart, resetCart } = cartSlice.actions
 
 export const selectCartItems = (state: RootState): ICartProduct[] => state.cart.items
 

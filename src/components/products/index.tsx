@@ -9,10 +9,12 @@ import { type RootState } from '@/store'
 const Products = (): JSX.Element => {
   const { loading, items } = useSelector((state: RootState) => state.stock)
 
+  const validItems = items.filter((item) => item.amount > 0)
+
   return (
     <section className="grid-products">
       {
-        !loading && items.map((product: IProduct, index: number) => (
+        !loading && validItems.map((product: IProduct, index: number) => (
           <Product product={product} key={`products-${index}`} />
         ))
       }
